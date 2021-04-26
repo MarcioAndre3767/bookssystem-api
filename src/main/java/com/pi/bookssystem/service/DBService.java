@@ -32,17 +32,18 @@ public class DBService {
 		Livro l2 = new Livro(null, "Engenharia de Software", "louis V. Gerstner", "Lorem ipsum", cat1);
 		Livro l3 = new Livro(null, "The Time Machime", "H.G. Wells", "lorem ipsum", cat2);
 		Livro l4 = new Livro(null, "The Was of the Worlds", "H.G. Wells", "lorem ipsum", cat2);
-		Livro l5 = new Livro(null, "I, Robot", "Isaac Asimov", "lorem ipsum", cat2);		
+		Livro l5 = new Livro(null, "I, Robot", "Isaac Asimov", "lorem ipsum", cat2);
+		Livro l6 = new Livro(null, "New good", "Ruan Cabalt", "lorem ipsum", cat2);
 			
 		//o livro conhece a sua categoria, mas a categoria não conhece o livro
 		//adicionando o livro na categoria
 		cat1.getLivros().addAll( Arrays.asList(l1, l2) );
-		cat2.getLivros().addAll( Arrays.asList(l3, l4, l5) );
+		cat2.getLivros().addAll( Arrays.asList(l3, l4, l6) );
 		
 		
 		//salvando
 		categoriaRespository.saveAll( Arrays.asList(cat1, cat2, cat3) );
-		livroRespository.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
+		livroRespository.saveAll(Arrays.asList(l1, l2, l3, l4, l5, l6));
 		
 		
 	}
