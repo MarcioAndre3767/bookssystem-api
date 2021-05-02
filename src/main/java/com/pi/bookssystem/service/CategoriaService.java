@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.pi.bookssystem.domain.Categoria;
@@ -32,8 +33,7 @@ public class CategoriaService {
 	}
 	
 	
-	//create-categoria
-	
+	//create-categoria	
 	public Categoria create(Categoria obj) {
 		obj.setId(null);
 		
@@ -51,12 +51,24 @@ public class CategoriaService {
 	}
 
 	//delete-categoria
-	public void delete(Integer id) {
-		findById(id);
-		
-		repository.deleteById(id);
-		
+	
+//	public void delete(Integer id) {
+//		findById(id);
+//		repository.deleteById(id);
+//	}
+	
+	
+ 	public void delete(Integer id) {
+		findById(id);		
+		try {
+			repository.deleteById(id);		
+		} catch (DataIntegrityViolationException e) {
+			throw new com.pi.bookssystem.service.exceptions.DataIntegrityViolationException("O número da categoria"
+					+ " que deseja deletar há livros associados ao ID digitado.");
+		}	
 	}
+	
+	
 	
 
 }

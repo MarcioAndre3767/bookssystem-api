@@ -68,10 +68,8 @@ public class CategoriaResource {
 	public ResponseEntity<CategoriaDTO> update( @PathVariable Integer id, @RequestBody Categoria objDto ){
 		Categoria newObj = service.update(id, objDto);
 		
-		return ResponseEntity.ok().body( new CategoriaDTO( newObj ) );
-		
-	}
-	
+		return ResponseEntity.ok().body( new CategoriaDTO( newObj ) );		
+	}	
 	
 	
 	/* Delete Categoria */
