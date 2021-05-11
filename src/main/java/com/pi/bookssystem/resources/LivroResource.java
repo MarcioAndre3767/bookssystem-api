@@ -2,11 +2,11 @@ package com.pi.bookssystem.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,6 +69,8 @@ public class LivroResource {
 		return ResponseEntity.ok().body(newObj);
 	}
 	
+	//método de criar livro
+	
 	@PostMapping
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") 
 		Integer id_cat, @RequestBody Livro obj){
@@ -81,7 +83,14 @@ public class LivroResource {
 	}
 	
 	
+	// método de deletar livro
 	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
+		
+		return ResponseEntity.noContent().build();
+	}
 	
 	
 	
